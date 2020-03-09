@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+
+  <metadata>
+
+    <id>Xamarin.Forms.Nuke</id>
+    <version>$version$</version>
+    <copyright>Sharpnado 2020</copyright>
+    <title>iOS Nuke native image caching library for Xamarin.Forms</title>
+    <authors>Jean-Marie Alfonsi</authors>
+    <owners></owners>
+    <license type="file">LICENSE</license>
+    <projectUrl>https://github.com/roubachof/Xamarin.Forms.Nuke</projectUrl>
+    <icon>images\nuke_small.png</icon>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+
+    <summary>GlideX.Forms + Xamarin.Forms.Nuke = complete NATIVE image caching solution for Xamarin.Forms without changing any line of your current project</summary>
+
+    <tags>xamarin.forms ios nuke image caching glidex</tags>
+
+    <description>
+Nuke 8.4.0 (https://github.com/kean/Nuke/releases/tag/8.4.0) for Xamarin.Forms.
+
+This repository was inspired by Jonathan Peppers GlideX implementation of the new IImageViewHandler interface for Xamarin.Forms (https://github.com/jonathanpeppers/glidex).
+
+Its goal is to provide the same kind of implementation for iOS with nuke, a native image caching library, achieving a complete image caching solution for Xamarin.Forms: you don't have to change any line of your existing project, the Xamarin.Forms image source handlers will just be overridden with cache-enabled ones.
+
+IMPORTANT: On iOS projects, call  Xamarin.Forms.Nuke.FormsHandler.Init() after Xamarin.Forms.Forms.Init() and before LoadApplication(new App()).
+    </description>
+
+    <dependencies>
+      <group>
+        <dependency id="Xamarin.Forms" version="2.5.1" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+
+  </metadata>
+
+  <files>
+    <!--Xamarin.iOS-->
+    <file src="Xamarin.Forms.Nuke\bin\Release\Xamarin.Forms.Nuke.dll"
+          target="lib\Xamarin.iOS10\Xamarin.Forms.Nuke.dll" />
+    <file src="Xamarin.Forms.Nuke\bin\Release\Xamarin.Forms.Nuke.pdb"
+          target="lib\Xamarin.iOS10\Xamarin.Forms.Nuke.pdb" />
+
+    <file src="__Docs__\nuke_small.png" target="images\" />
+
+    <!--License-->
+    <file src="LICENSE" target="LICENSE" />
+  </files>
+
+</package>

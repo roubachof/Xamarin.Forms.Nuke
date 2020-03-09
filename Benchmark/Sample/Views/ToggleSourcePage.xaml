@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="ImageSourceHandlers.Forms.Sample.Views.ToggleSourcePage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Toggle!">
+    <StackLayout Padding="5">
+        <Button Clicked="Button_Clicked" Text="Tap to get random images!" />
+        <Image x:Name="_image" HeightRequest="100" />
+        <Label x:Name="_label" />
+    </StackLayout>
+</ContentPage>

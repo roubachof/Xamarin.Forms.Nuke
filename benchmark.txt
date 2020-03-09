@@ -1,0 +1,123 @@
+######################################################
+#
+# Peppers benchmark app
+#
+######################################################
+
+
+
+#####################
+# Nuke 8.4.0
+#####################
+________________________
+Grid Only Remote Example
+
+Cold
+00:00:04.7279852	15 073 280
+
+____________
+Grid Example
+
+Cold
+00:00:04.8207471	15 040 512
+
+____________
+ViewCells
+
+Cold
+00:00:00.6823005	20 758 528
+
+____________
+ImageCells
+
+Cold 
+00:00:00.6389586	20 611 072
+
+____________
+Huge Images
+
+Cold
+00:00:00.7081719	 8 634 368
+
+
+
+######################
+# FFIL 2.4.11.982
+######################
+
+________________________
+Grid Only Remote Example
+
+Cold
+00:00:04.7957180	25 722 880
+
+* Sometimes first image fails to load
+
+____________
+Grid Example
+
+Cold
+00:00:04.7302267	24 674 304
+
+* Sometimes first image fails to load
+
+____________
+ViewCells
+
+Cold
+00:00:00.7972937	28 852 224
+
+
+* slow loading times
+* often fails to load first images (failed 7 times on 10)
+
+____________
+ImageCells
+
+Cold
+00:00:00.6773243	28 868 608
+
+* slow loading times
+* often fails to load some images (failed 6 times on 10)
+
+____________
+Huge Images
+
+Cold
+00:00:00.7574247	 10 059 776
+
+
+
+############################
+# Xamarin.Forms 4.5.0.356
+############################
+
+________________________
+Grid Only Remote Example
+
+Cold
+00:00:06.3519542	248 905 728
+
+____________
+Grid Example
+
+Cold
+00:00:05.0665543	195 035 136
+
+____________
+ViewCells
+
+Cold
+00:00:00.8089576	 41 418 752
+
+____________
+ImageCells
+
+Cold
+00:00:00.6494435	 27 000 832
+
+____________
+Huge Images
+
+Cold
+00:00:01.3178408	128 516 096

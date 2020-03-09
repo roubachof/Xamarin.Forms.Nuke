@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<profiler:ProfilerPage
+    x:Class="ImageSourceHandlers.Forms.Sample.Views.ViewCellPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:profiler="clr-namespace:ImageSourceHandlers.Forms.Sample.Profiler;assembly=ImageSourceHandlers.Forms.Sample"
+    Title="ViewCells">
+    <ListView CachingStrategy="RecycleElement" ItemsSource="{Binding}">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid ColumnSpacing="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            HorizontalTextAlignment="Center"
+                            Text="Smooth, baby"
+                            VerticalTextAlignment="Center" />
+                        <Image Grid.Column="1" Source="{Binding}" />
+                        <Image Grid.Column="2" Source="{Binding}" />
+                        <Image Grid.Column="3" Source="{Binding}" />
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</profiler:ProfilerPage>
