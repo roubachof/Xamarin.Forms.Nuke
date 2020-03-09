@@ -2,11 +2,17 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 
   <PropertyGroup>
-    <Copyright>Copyright © Sharpnado 2019</Copyright>
-    <Version>1.0.0</Version>
-    <Company>Sharpnado</Company>
-    <Product>FFImageLoading.ImageSourceHandler</Product>
-    <Description>Caching-enabled ImageSourceHandler for iOS and Xamarin.Forms</Description>
+    <Copyright>Copyright © Sharpnado 2020</Copyright>
+    <Version>8.4.0</Version>
+    <Company>Sharpnado and Alexander Grebenyuk</Company>
+    <Product>iOS Nuke native image caching library for Xamarin.Forms</Product>
+    <Description>Nuke 8.4.0 (https://github.com/kean/Nuke/releases/tag/8.4.0) for Xamarin.Forms.
+
+This repository was inspired by Jonathan Peppers GlideX implementation of the new IImageViewHandler interface for Xamarin.Forms (https://github.com/jonathanpeppers/glidex).
+
+Its goal is to provide the same kind of implementation for iOS with nuke, a native image caching library, achieving a complete image caching solution for Xamarin.Forms: you don't have to change any line of your existing project, the Xamarin.Forms image source handlers will just be overridden with cache-enabled ones.
+
+IMPORTANT: On iOS projects, call  Xamarin.Forms.Nuke.FormsHandler.Init() after Xamarin.Forms.Forms.Init() and before LoadApplication(new App()).</Description>
   </PropertyGroup>
 
   <Target Name="GenerateCustomAssemblyInfo" BeforeTargets="BeforeBuild">

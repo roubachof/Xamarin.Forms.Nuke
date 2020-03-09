@@ -1,9 +1,9 @@
-$iosProject = ".\FFImageLoading.ImageSourceHandler\FFImageLoading.ImageSourceHandler.csproj"
+$iosProject = ".\Xamarin.Forms.Nuke\Xamarin.Forms.Nuke.csproj"
 
-echo "  FFImageLoading.ImageSourceHandler project"
+echo "  Xamarin.Forms.Nuke project"
 msbuild "$iosProject" /t:Clean,Restore,Build /p:Configuration=Release > build.txt
 
-$version = (Get-Item FFImageLoading.ImageSourceHandler\bin\Release\FFImageLoading.ImageSourceHandler.dll).VersionInfo.FileVersion
+$version = (Get-Item Xamarin.Forms.Nuke\bin\Release\Xamarin.Forms.Nuke.dll).VersionInfo.FileVersion
 
-echo "  packaging Sharpnado.Presentation.Forms.nuspec (v$version)"
-nuget pack .\FFImageLoading.ImageSourceHandler.nuspec -Version $version > $null
+echo "  packaging Xamarin.Forms.Nuke.nuspec (v$version)"
+nuget pack .\Xamarin.Forms.Nuke.nuspec -Version $version > $null
