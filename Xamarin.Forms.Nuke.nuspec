@@ -44,6 +44,9 @@ IMPORTANT: On iOS projects, call  Xamarin.Forms.Nuke.FormsHandler.Init() after X
     <file src="Xamarin.Forms.Nuke\bin\Release\Xamarin.Forms.Nuke.pdb"
           target="lib\Xamarin.iOS10\Xamarin.Forms.Nuke.pdb" />
 
+    <file src="Xamarin.Forms.Nuke\bin\Release\XamarinNuke.dll"
+          target="lib\Xamarin.iOS10\XamarinNuke.dll" />
+
     <file src="__Docs__\nuke_small.png" target="images\" />
 
     <!--License-->
