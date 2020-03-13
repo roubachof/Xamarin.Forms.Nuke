@@ -34,7 +34,7 @@ LoadApplication(new ImageSourceHandlers.Forms.Sample.Views.App());
 ```csharp
 Xamarin.Forms.Forms.Init (this, bundle);
 //This forces the custom renderers to be used
-Android.Glide.Forms.Init ();
+Android.Glide.Forms.Init (this);
 LoadApplication (new App ());
 ```
 
