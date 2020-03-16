@@ -23,7 +23,7 @@ Its goal is to provide the same kind of implementation for ```iOS```, achieving 
 ```csharp
 Xamarin.Forms.Forms.Init();
 Xamarin.Forms.Nuke.FormsHandler.Init(debug: false);
-LoadApplication(new ImageSourceHandlers.Forms.Sample.Views.App());
+LoadApplication(new App());
 ```
 
 ### GlideX.Forms
