@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -57,7 +58,13 @@ namespace Xamarin.Forms.Nuke
                             string extension = Path.GetExtension(fileName);
                             FormsHandler.Debug($"Loading as bundle resource name: {name} with type: {extension}");
                             fileUrl = NSBundle.MainBundle.GetUrlForResource(name, extension);
-                            FormsHandler.Debug($"Bundle resource path: {fileUrl.AbsoluteString}");
+                           
+                            if (fileUrl == null)
+                            {
+                                //Use 
+                                return UIImage.FromBundle(name);
+                            }
+                            FormsHandler.Debug($"Bundle resource path: {fileUrl?.AbsoluteString}");
                         }
 
                         return await LoadImageAsync(fileUrl);
