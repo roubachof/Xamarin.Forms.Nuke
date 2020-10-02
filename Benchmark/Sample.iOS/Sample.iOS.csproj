@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -142,6 +142,8 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon20.png">
       <Visible>false</Visible>
     </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\new_bef.imageset\Contents.json" />
+    <ImageAsset Include="Assets.xcassets\new_bef.imageset\new_bef.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -187,5 +189,8 @@
       <Project>{AB300CF9-630E-4B29-9EE3-24E9A2C822E3}</Project>
       <Name>Sample</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets.xcassets\new_bef.imageset\" />
   </ItemGroup>
 </Project>
