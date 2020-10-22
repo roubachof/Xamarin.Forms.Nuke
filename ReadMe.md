@@ -46,9 +46,11 @@ You just achieved **90%+** memory reduction when manipulating ```Image``` views 
 ## Known Issues
 
 `Xamarin.Forms.Nuke` cannot cache images coming from the Asset Catalog:
-https://docs.microsoft.com/en-us/xamarin/ios/app-fundamentals/images-icons/displaying-an-image?tabs=macos
-This is due to the fact that the Asset Catalogue is packed in the ipa, and you cannot get an image URI from it.
-Since version 8.4.1, it will however cache correctly images respecting the density convention (@2x, @3x) locating in your Resources folder (see #13).
+
+https://docs.microsoft.com/en-us/xamarin/ios/app-fundamentals/images-icons/displaying-an-image
+
+This is due to the fact that the `Asset Catalogue` is packed in the ipa, and you cannot get an image URI from it.
+Since version 8.4.1, it will however cache correctly images respecting the density convention (@2x, @3x) locating in your `Resources` folder (see [Issue #13](https://github.com/roubachof/Xamarin.Forms.Nuke/issues/13)).
 
 However, if you still have some issues with your local images, you can disable Xamarin.Forms.Nuke for all `FileImageSource` by setting the `disableFileImageSourceHandling` parameter of the `FormsHandler.Init` to `true`:
 ```csharp
