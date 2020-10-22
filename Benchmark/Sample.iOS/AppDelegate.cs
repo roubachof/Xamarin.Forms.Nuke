@@ -29,8 +29,8 @@ namespace Sample.iOS
             //MemoryProfiler.Instance = new MemoryProfiler("Xamarin.Forms", null);
 
             // Uncomment for Nuke test
-            MemoryProfiler.Instance = new MemoryProfiler("NukeX.Forms", Xamarin.Forms.Nuke.NukeController.ClearCache);
-            Xamarin.Forms.Nuke.FormsHandler.Init(false);
+            MemoryProfiler.Instance = new MemoryProfiler("Nuke", Xamarin.Forms.Nuke.NukeController.ClearCache);
+            Xamarin.Forms.Nuke.FormsHandler.Init(true, disableFileImageSourceHandling: false);
 
             // Uncomment for FFIL test
             //MemoryProfiler.Instance = new MemoryProfiler("FFImageLoading", FFImageLoading.FFImageLoadingController.ClearCache);

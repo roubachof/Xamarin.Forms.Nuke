@@ -1,6 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -8,6 +8,7 @@ using Foundation;
 
 using UIKit;
 
+using Xamarin.Forms.Platform.iOS;
 using Xamarin.Nuke;
 
 namespace Xamarin.Forms.Nuke
@@ -15,76 +16,91 @@ namespace Xamarin.Forms.Nuke
     [Preserve]
     internal static class NukeHelper
     {
-        public static void Init()
+        private static readonly Dictionary<float, string> ScaleToDensitySuffix = new Dictionary<float, string>
+            {
+                { 1, string.Empty }, 
+                { 2, "@2x" }, 
+                { 3, "@3x" },
+                { 4, "@4x" },
+                { 5, "@5x" },
+                { 6, "@6x" },
+            };
+
+        private static readonly FileImageSourceHandler DefaultFileImageSourceHandler = new FileImageSourceHandler();
+
+        public static void Preserve()
         {
         }
 
-        public static void ClearCache()
-        {
-        }
-
-        public static async Task<UIImage> LoadViaNuke(ImageSource source, CancellationToken token)
+        public static Task<UIImage> LoadViaNuke(ImageSource source, CancellationToken token, float scale)
         {
             try
             {
                 switch (source)
                 {
                     case UriImageSource uriSource:
-                        var urlString = uriSource.Uri.OriginalString;
-                        if (String.IsNullOrEmpty(urlString))
-                        {
-                            return null;
-                        }
-
-                        FormsHandler.Debug("Loading `{0}` as a web URL", urlString);
-                        return await LoadImageAsync(new NSUrl(urlString));
+                        return HandleUriSource(uriSource, token, scale);
 
                     case FileImageSource fileSource:
-                        var fileName = fileSource.File;
-                        if (string.IsNullOrEmpty(fileName))
-                        {
-                            return null;
-                        }
-
-                        FormsHandler.Debug("Loading `{0}` as a file", fileName);
-                        NSUrl fileUrl = null;
-                        if (File.Exists(fileName))
-                        {
-                            fileUrl = NSUrl.FromFilename(fileName);;
-                        }
-                        else
-                        {
-                            string name = Path.GetFileNameWithoutExtension(fileName);
-                            string extension = Path.GetExtension(fileName);
-                            FormsHandler.Debug($"Loading as bundle resource name: {name} with type: {extension}");
-                            fileUrl = NSBundle.MainBundle.GetUrlForResource(name, extension);
-                           
-                            if (fileUrl == null)
-                            {
-                                //Use 
-                                return UIImage.FromBundle(name);
-                            }
-                            FormsHandler.Debug($"Bundle resource path: {fileUrl?.AbsoluteString}");
-                        }
-
-                        return await LoadImageAsync(fileUrl);
-
-                    //case StreamImageSource streamImageSource:
-                    //    FormsHandler.Debug("Loading Image as a stream");
-                    //    return await LoadStreamAsync(streamImageSource);
+                        return FormsHandler.DisableFileImageSourceHandling
+                            ? DefaultFileImageSourceHandler.LoadImageAsync(fileSource, token, scale)
+                            : HandleFileSourceAsync(fileSource, token, scale);
 
                     default:
-                        FormsHandler.Warn("Unhandled image source type {0}", source.GetType().Name);
+                        FormsHandler.Warn($"Unhandled image source type {source.GetType().Name}");
                         break;
                 }
             }
             catch (Exception exception)
             {
-                //Since developers can't catch this themselves, I think we should log it and silently fail
-                FormsHandler.Warn("Unexpected exception in FFImageLoading image source handler: {0}", exception);
+                FormsHandler.Warn($"Unexpected exception in Nuke image source handler: {exception}");
             }
 
-            return default(UIImage);
+            return Task.FromResult(default(UIImage));
+        }
+
+        private static Task<UIImage> HandleUriSource(UriImageSource uriSource, CancellationToken token, float scale)
+        {
+            var urlString = uriSource.Uri?.OriginalString;
+            if (string.IsNullOrEmpty(urlString))
+            {
+                return null;
+            }
+
+            FormsHandler.Debug(() => $"Loading \"{urlString}\" as a web URL");
+            return LoadImageAsync(new NSUrl(urlString));
+        }
+
+        private static Task<UIImage> HandleFileSourceAsync(FileImageSource fileSource, CancellationToken token, float scale)
+        {
+            var fileName = fileSource.File;
+            if (string.IsNullOrEmpty(fileName))
+            {
+                return null;
+            }
+
+            string name = Path.GetFileNameWithoutExtension(fileName);
+            string nameWithSuffix = $"{name}{ScaleToDensitySuffix[scale]}";
+            string filenameWithDensity = fileName.Replace(name, nameWithSuffix);
+
+            NSUrl fileUrl;
+            if (File.Exists(filenameWithDensity))
+            {
+                FormsHandler.Debug(() => $"Loading \"{filenameWithDensity}\" as a file URI");
+                fileUrl = NSUrl.FromFilename(filenameWithDensity);;
+            }
+            else if (File.Exists(fileName))
+            {
+                FormsHandler.Debug(() => $"Loading \"{fileName}\" as a file URI");
+                fileUrl = NSUrl.FromFilename(fileName);;
+            }
+            else
+            {
+                FormsHandler.Debug(() => $"Couldn't retrieve the image URI: loading \"{fileName}\" from Bundle");
+                return Task.FromResult(UIImage.FromBundle(fileName));
+            }
+
+            return LoadImageAsync(fileUrl);
         }
 
         private static Task<UIImage> LoadImageAsync(NSUrl url)
@@ -97,7 +113,7 @@ namespace Xamarin.Forms.Nuke
                     {
                         if (image == null)
                         {
-                            FormsHandler.Debug("Fail to load image: {0}, innerError: {1}", url.AbsoluteString, errorMessage);
+                            FormsHandler.Debug(() => $"Fail to load image: {url.AbsoluteString}, innerError: {errorMessage}");
                         }
 
                         tcs.SetResult(image);

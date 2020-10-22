@@ -43,6 +43,20 @@ LoadApplication (new App ());
 You just achieved **90%+** memory reduction when manipulating ```Image``` views on **both** platforms.
 
 
+## Known Issues
+
+`Xamarin.Forms.Nuke` cannot cache images coming from the Asset Catalog:
+https://docs.microsoft.com/en-us/xamarin/ios/app-fundamentals/images-icons/displaying-an-image?tabs=macos
+This is due to the fact that the Asset Catalogue is packed in the ipa, and you cannot get an image URI from it.
+Since version 8.4.1, it will however cache correctly images respecting the density convention (@2x, @3x) locating in your Resources folder (see #13).
+
+However, if you still have some issues with your local images, you can disable Xamarin.Forms.Nuke for all `FileImageSource` by setting the `disableFileImageSourceHandling` parameter of the `FormsHandler.Init` to `true`:
+```csharp
+Xamarin.Forms.Forms.Init();
+Xamarin.Forms.Nuke.FormsHandler.Init(debug: false, disableFileImageSourceHandling: true);
+LoadApplication(new App());
+```
+
 ## Benchmark
 
 I changed a bit the ```glidex``` benchmark samples to have a more fair comparison. I switched from a random distribution of the images to a deterministic one to be sure we are comparing the same data set.

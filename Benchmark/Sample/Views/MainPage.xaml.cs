@@ -12,7 +12,7 @@ namespace ImageSourceHandlers.Forms.Sample.Views
         {
             Title = $"{MemoryProfiler.Instance.Name} Benchmark";
 			InitializeComponent ();
-		}
+        }
 
         async void GridOnlyRemote_Clicked (object sender, EventArgs e)
         {
