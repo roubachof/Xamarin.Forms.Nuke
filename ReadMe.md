@@ -43,6 +43,14 @@ LoadApplication (new App ());
 You just achieved **90%+** memory reduction when manipulating ```Image``` views on **both** platforms.
 
 
+## Support for iOS < 12.2
+
+As specified here: https://docs.microsoft.com/en-us/xamarin/ios/platform/binding-swift/walkthrough#consume-the-binding-library
+
+You need to add the [Xamarin.iOS.SwiftRuntimeSupport NuGet package](https://www.nuget.org/packages/Xamarin.iOS.SwiftRuntimeSupport/) to your target project if you want to support iOS 12.1 and earlier.
+Please read the above doc to submit an app with such support.
+
+
 ## Known Issues
 
 `Xamarin.Forms.Nuke` cannot cache images coming from the Asset Catalog:

@@ -32,7 +32,6 @@ IMPORTANT: On iOS projects, call  Xamarin.Forms.Nuke.FormsHandler.Init() after X
     <dependencies>
       <group>
         <dependency id="Xamarin.Forms" version="2.5.1" exclude="Build,Analyzers" />
-        <dependency id="Xamarin.iOS.SwiftRuntimeSupport" version="0.2.0" exclude="Build,Analyzers" />
       </group>
     </dependencies>
 

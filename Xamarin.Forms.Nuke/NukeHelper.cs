@@ -64,6 +64,7 @@ namespace Xamarin.Forms.Nuke
             var urlString = uriSource.Uri?.OriginalString;
             if (string.IsNullOrEmpty(urlString))
             {
+                FormsHandler.Debug(() => "A null or empty url has been specified for the UriImageSource, returning...");
                 return null;
             }
 
@@ -76,6 +77,7 @@ namespace Xamarin.Forms.Nuke
             var fileName = fileSource.File;
             if (string.IsNullOrEmpty(fileName))
             {
+                FormsHandler.Debug(() => "A null or empty filename has been specified for the FileImageSource, returning...");
                 return null;
             }
 

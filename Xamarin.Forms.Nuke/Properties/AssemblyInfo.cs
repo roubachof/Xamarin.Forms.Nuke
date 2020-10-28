@@ -10,7 +10,7 @@
 
 [assembly: System.Reflection.AssemblyTitle("Xamarin.Forms.Nuke")]
 [assembly: System.Reflection.AssemblyCompany("Sharpnado and Alexander Grebenyuk")]
-[assembly: System.Reflection.AssemblyDescription(@"Nuke 8.4.1 (https://github.com/kean/Nuke/releases/tag/8.4.1) for Xamarin.Forms.
+[assembly: System.Reflection.AssemblyDescription(@"Nuke 8.4.2 (https://github.com/kean/Nuke/releases/tag/8.4.0) for Xamarin.Forms.
 
 This repository was inspired by Jonathan Peppers GlideX implementation of the new IImageViewHandler interface for Xamarin.Forms (https://github.com/jonathanpeppers/glidex).
 
@@ -19,7 +19,7 @@ Its goal is to provide the same kind of implementation for iOS with nuke, a nati
 IMPORTANT: On iOS projects, call  Xamarin.Forms.Nuke.FormsHandler.Init() after Xamarin.Forms.Forms.Init() and before LoadApplication(new App()).")]
 [assembly: System.Reflection.AssemblyProduct("iOS Nuke native image caching library for Xamarin.Forms")]
 [assembly: System.Reflection.AssemblyCopyright("Copyright © Sharpnado 2020")]
-[assembly: System.Reflection.AssemblyVersion("8.4.1")]
-[assembly: System.Reflection.AssemblyFileVersion("8.4.1")]
+[assembly: System.Reflection.AssemblyVersion("8.4.2")]
+[assembly: System.Reflection.AssemblyFileVersion("8.4.2")]
 
 
