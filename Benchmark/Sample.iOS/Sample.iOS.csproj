@@ -215,6 +215,9 @@
   <ItemGroup>
     <BundleResource Include="Resources\Teams.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\holygrail.gif" />
+  </ItemGroup>
   <ProjectExtensions>
     <VisualStudio>
       <UserProperties XamarinHotReloadWrongLinkerErrorInfoBarSampleiOSHideInfoBar="True" />

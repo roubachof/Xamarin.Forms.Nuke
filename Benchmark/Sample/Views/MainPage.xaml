@@ -4,7 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              Title="Xamarin.Forms.Nuke Sample">
     <StackLayout Padding="20">
-        <Grid ColumnDefinitions="*,*,*" RowDefinitions="20,40,60">
+        <Grid ColumnDefinitions="*,*,*" RowDefinitions="20,40,20,100,60">
 
             <Label Grid.Row="0"
                    Grid.Column="0"
@@ -25,6 +25,33 @@
                    FontSize="12"
                    Text="Resources" />
 
+            <!--  Test edge cases  -->
+            <Image Grid.Row="0"
+                   Grid.Column="0"
+                   WidthRequest="20"
+                   HeightRequest="20"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Source="" />
+
+            <!--  Test edge cases  -->
+            <Image Grid.Row="0"
+                   Grid.Column="0"
+                   WidthRequest="20"
+                   HeightRequest="20"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Source=".gif" />
+
+            <!--  Test edge cases  -->
+            <Image Grid.Row="0"
+                   Grid.Column="0"
+                   WidthRequest="20"
+                   HeightRequest="20"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Source="pipo" />
+
             <Image Grid.Row="1"
                    Grid.Column="0"
                    WidthRequest="20"
@@ -43,15 +70,46 @@
                    VerticalOptions="Center"
                    Source="Teams.png" />
 
+            <Label Grid.Row="2"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   FontSize="12"
+                   Text="Local Gif" />
+            <Label Grid.Row="2"
+                   Grid.Column="1"
+                   Grid.ColumnSpan="2"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   FontSize="12"
+                   Text="Remote Gif" />
 
-            <Button Grid.Row="2"
+            <Image Grid.Row="3"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   IsAnimationPlaying="True"
+                   Source="holygrail.gif" />
+
+            <Image Grid.Row="3"
+                   Grid.Column="1"
+                   Grid.ColumnSpan="2"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   IsAnimationPlaying="True"
+                   Source="https://2img.net/h/media.giphy.com/media/ZmkU6UiUd25YA/giphy.gif" />
+
+
+            <Button Grid.Row="4"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
                     Margin="0,10"
                     VerticalOptions="End"
                     Clicked="ClearCache_Clicked"
                     Text="CLEAR CACHE" />
-            <Button Grid.Row="2"
+            <Button Grid.Row="4"
                     Grid.Column="1"
                     Grid.ColumnSpan="2"
                     Margin="0,10"

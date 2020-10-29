@@ -26,8 +26,6 @@ namespace Xamarin.Forms.Nuke
                 { 6, "@6x" },
             };
 
-        private static readonly FileImageSourceHandler DefaultFileImageSourceHandler = new FileImageSourceHandler();
-
         public static void Preserve()
         {
         }
@@ -43,7 +41,7 @@ namespace Xamarin.Forms.Nuke
 
                     case FileImageSource fileSource:
                         return FormsHandler.DisableFileImageSourceHandling
-                            ? DefaultFileImageSourceHandler.LoadImageAsync(fileSource, token, scale)
+                            ? ImageSourceHandler.DefaultFileImageSourceHandler.LoadImageAsync(fileSource, token, scale)
                             : HandleFileSourceAsync(fileSource, token, scale);
 
                     default:
@@ -62,9 +60,14 @@ namespace Xamarin.Forms.Nuke
         private static Task<UIImage> HandleUriSource(UriImageSource uriSource, CancellationToken token, float scale)
         {
             var urlString = uriSource.Uri?.OriginalString;
-            if (string.IsNullOrEmpty(urlString))
+            if (string.IsNullOrWhiteSpace(urlString))
             {
                 FormsHandler.Debug(() => "A null or empty url has been specified for the UriImageSource, returning...");
+                return null;
+            }
+
+            if (token.IsCancellationRequested)
+            {
                 return null;
             }
 
@@ -75,15 +78,26 @@ namespace Xamarin.Forms.Nuke
         private static Task<UIImage> HandleFileSourceAsync(FileImageSource fileSource, CancellationToken token, float scale)
         {
             var fileName = fileSource.File;
-            if (string.IsNullOrEmpty(fileName))
+            if (string.IsNullOrWhiteSpace(fileName))
             {
                 FormsHandler.Debug(() => "A null or empty filename has been specified for the FileImageSource, returning...");
                 return null;
             }
 
             string name = Path.GetFileNameWithoutExtension(fileName);
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                FormsHandler.Debug(() => $"An extension without a name ({fileName}) has been specified for the FileImageSource, returning...");
+                return null;
+            }
+
             string nameWithSuffix = $"{name}{ScaleToDensitySuffix[scale]}";
             string filenameWithDensity = fileName.Replace(name, nameWithSuffix);
+
+            if (token.IsCancellationRequested)
+            {
+                return null;
+            }
 
             NSUrl fileUrl;
             if (File.Exists(filenameWithDensity))
@@ -100,6 +114,11 @@ namespace Xamarin.Forms.Nuke
             {
                 FormsHandler.Debug(() => $"Couldn't retrieve the image URI: loading \"{fileName}\" from Bundle");
                 return Task.FromResult(UIImage.FromBundle(fileName));
+            }
+
+            if (token.IsCancellationRequested)
+            {
+                return null;
             }
 
             return LoadImageAsync(fileUrl);
