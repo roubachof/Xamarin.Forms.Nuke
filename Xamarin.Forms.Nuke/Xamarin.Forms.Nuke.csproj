@@ -35,9 +35,6 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
-    <Reference Include="XamarinNuke">
-      <HintPath>.\XamarinNuke.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -58,9 +55,9 @@
     <PackageReference Include="Xamarin.Forms">
       <Version>4.8.0.1560</Version>
     </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="XamarinNuke.dll" />
+    <PackageReference Include="Xamarin.Nuke">
+      <Version>1.0.14</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\AssemblyInfo.targets" />

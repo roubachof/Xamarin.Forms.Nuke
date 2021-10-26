@@ -6,7 +6,7 @@
 
     <id>Xamarin.Forms.Nuke</id>
     <version>$version$</version>
-    <copyright>Sharpnado 2020</copyright>
+    <copyright>Sharpnado 2021</copyright>
     <title>iOS Nuke native image caching library for Xamarin.Forms</title>
     <authors>Jean-Marie Alfonsi</authors>
     <owners></owners>
@@ -14,13 +14,13 @@
     <projectUrl>https://github.com/roubachof/Xamarin.Forms.Nuke</projectUrl>
     <icon>images\nuke_small.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-
+    <releaseNotes>Added Xamarin.Nuke nuget package as dependency, bump to Nuke 10.3.1.</releaseNotes>
     <summary>GlideX.Forms + Xamarin.Forms.Nuke = complete NATIVE image caching solution for Xamarin.Forms without changing any line of your current project</summary>
 
     <tags>xamarin.forms ios nuke image caching glidex</tags>
 
     <description>
-Nuke 8.4.0 (https://github.com/kean/Nuke/releases/tag/8.4.0) for Xamarin.Forms.
+Nuke 10.3.1 (https://github.com/kean/Nuke/releases/tag/10.3.1) for Xamarin.Forms.
 
 This repository was inspired by Jonathan Peppers GlideX implementation of the new IImageViewHandler interface for Xamarin.Forms (https://github.com/jonathanpeppers/glidex).
 
@@ -30,8 +30,9 @@ IMPORTANT: On iOS projects, call  Xamarin.Forms.Nuke.FormsHandler.Init() after X
     </description>
 
     <dependencies>
-      <group>
+      <group targetFramework="Xamarin.iOS10">
         <dependency id="Xamarin.Forms" version="2.5.1" exclude="Build,Analyzers" />
+        <dependency id="Xamarin.Nuke" version="1.0.14" />
       </group>
     </dependencies>
 
@@ -41,7 +42,6 @@ IMPORTANT: On iOS projects, call  Xamarin.Forms.Nuke.FormsHandler.Init() after X
     <!--Xamarin.iOS-->
     <file src="Xamarin.Forms.Nuke\bin\Release\Xamarin.Forms.Nuke.dll" target="lib\Xamarin.iOS10\Xamarin.Forms.Nuke.dll" />
     <file src="Xamarin.Forms.Nuke\bin\Release\Xamarin.Forms.Nuke.pdb" target="lib\Xamarin.iOS10\Xamarin.Forms.Nuke.pdb" />
-    <file src="Xamarin.Forms.Nuke\bin\Release\XamarinNuke.dll" target="lib\Xamarin.iOS10\XamarinNuke.dll" />
 
     <file src="__Docs__\nuke_small.png" target="images\" />
 

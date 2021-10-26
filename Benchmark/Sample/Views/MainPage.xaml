@@ -99,7 +99,7 @@
                    HorizontalOptions="Center"
                    VerticalOptions="Center"
                    IsAnimationPlaying="True"
-                   Source="https://2img.net/h/media.giphy.com/media/ZmkU6UiUd25YA/giphy.gif" />
+                   Source="https://i.pinimg.com/originals/94/9b/f6/949bf6697db43904f1da1deab6938e7c.gif" />
 
 
             <Button Grid.Row="4"

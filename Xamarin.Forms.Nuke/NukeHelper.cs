@@ -8,7 +8,6 @@ using Foundation;
 
 using UIKit;
 
-using Xamarin.Forms.Platform.iOS;
 using Xamarin.Nuke;
 
 namespace Xamarin.Forms.Nuke
