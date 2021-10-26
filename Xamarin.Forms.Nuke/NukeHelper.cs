@@ -59,7 +59,7 @@ namespace Xamarin.Forms.Nuke
 
         private static Task<UIImage> HandleUriSource(UriImageSource uriSource, CancellationToken token, float scale)
         {
-            var urlString = uriSource.Uri?.OriginalString;
+            var urlString = uriSource.Uri?.AbsoluteUri;
             if (string.IsNullOrWhiteSpace(urlString))
             {
                 FormsHandler.Debug(() => "A null or empty url has been specified for the UriImageSource, returning...");
@@ -72,7 +72,7 @@ namespace Xamarin.Forms.Nuke
             }
 
             FormsHandler.Debug(() => $"Loading \"{urlString}\" as a web URL");
-            return LoadImageAsync(new NSUrl(urlString));
+            return LoadImageAsync(NSUrl.FromString(urlString));
         }
 
         private static Task<UIImage> HandleFileSourceAsync(FileImageSource fileSource, CancellationToken token, float scale)
